@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //Not gonna put this on .env to be more easy to test the code
-const API_KEY_CAT = 'live_atgYmdwPUqndGiPcVHgidX97pzGc3Xq8bYV4GeyoAR6lkuVtoc2koInnl7EXgY0f'
+const API_KEY_CAT = ''
 
 const api = axios.create({
     baseURL: 'https://api.thecatapi.com/v1',
