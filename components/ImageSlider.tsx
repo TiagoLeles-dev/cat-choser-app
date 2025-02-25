@@ -17,22 +17,24 @@ interface Cat {
     url: string;
     width: number;
     height: number;
+    breeds: {}[]
 }
 
 interface ImageSliderProps {
     catList: Cat[];
     onAccept: (cat: Cat) => void;
     onDecline: (cat: Cat) => void;
+    activeIndex: (index) => void;
 }
 
 const ICON_SIZE = 30;
 
-const ImageSlider: React.FC<ImageSliderProps> = ({ catList, onAccept, onDecline }) => {
-    const [currentIndex, setCurrentIndex] = useState<number>(0);
+const ImageSlider: React.FC<ImageSliderProps> = ({ catList, onAccept, onDecline, activeIndex }) => {
 
     const ref = useRef<SwiperCardRefType>(null);
-
     const renderCard = useCallback((cat: Cat) => {
+        const breed = cat.breeds?.[0] ?? { name: 'Unknown', origin: 'Unknown' };
+
         return (
             <View style={styles.renderCardContainer}>
                 <Image
@@ -42,14 +44,16 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ catList, onAccept, onDecline 
                 />
                 <View style={styles.cardInfoContainer}>
                     <View style={styles.cardHeader}>
-                        <Text style={styles.catId}>{cat.id}</Text>
-                        <Text style={styles.catHeight}>{cat.height}</Text>
+                        <Text style={styles.catId}>{breed.name}</Text>
+                        <Text style={styles.catHeight}>{cat.id}</Text>
                     </View>
-                    <Text style={styles.catWidth}>{cat.width}</Text>
+                    <Text style={styles.catWidth}>{breed.origin}</Text>
                 </View>
             </View>
         );
     }, []);
+
+
 
     const OverlayLabelRight = useCallback(() => {
         return (
@@ -86,16 +90,13 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ catList, onAccept, onDecline 
                     data={catList || fixedCats}
                     renderCard={renderCard}
                     onIndexChange={(index) => {
-                        setCurrentIndex(index);
+                        activeIndex(index);
                         console.log('Current Active index', index);
                     }}
                     onSwipeRight={(cardIndex) => {
                         const activeCat = catList[cardIndex];
                         console.log('cardIndex', cardIndex);
                         onAccept(activeCat);
-                    }}
-                    onSwipedAll={() => {
-                        console.log('onSwipedAll');
                     }}
                     onSwipeLeft={(cardIndex) => {
                         const activeCat = catList[cardIndex];
@@ -110,15 +111,6 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ catList, onAccept, onDecline 
             </View>
 
             <View style={styles.buttonsContainer}>
-                {/* <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => {
-                        ref.current?.swipeBack();
-                    }}
-                >
-                    <AntDesign name="reload1" size={ICON_SIZE} color="black" />
-                </TouchableOpacity> */}
-
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => {
