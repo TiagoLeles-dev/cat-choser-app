@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-
-const Home: React.FC = () => {
+const chat: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>01</Text>
+      <Text style={styles.text}>02</Text>
     </View>
   );
 }
@@ -15,6 +14,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "#FBFAFF"
+
   },
   text: {
     fontSize: 126,
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Home;
+export default chat;
