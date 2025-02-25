@@ -35,6 +35,9 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ catList, onAccept, onDecline,
     const renderCard = useCallback((cat: Cat) => {
         const breed = cat.breeds?.[0] ?? { name: 'Unknown', origin: 'Unknown' };
 
+        // API to get vote not working, doing this to simulate the value
+        const catIdNumbers = cat.id.match(/\d+/)?.join('') || '0';
+
         return (
             <View style={styles.renderCardContainer}>
                 <Image
@@ -45,7 +48,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ catList, onAccept, onDecline,
                 <View style={styles.cardInfoContainer}>
                     <View style={styles.cardHeader}>
                         <Text style={styles.catId}>{breed.name}</Text>
-                        <Text style={styles.catHeight}>{cat.id}</Text>
+                        <Text style={styles.catHeight}>{catIdNumbers}</Text>
                     </View>
                     <Text style={styles.catWidth}>{breed.origin}</Text>
                 </View>
