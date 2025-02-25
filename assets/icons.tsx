@@ -1,7 +1,7 @@
 import { MaterialIcons, Feather, Ionicons } from "@expo/vector-icons";
 
 export const icons = {
-    index: (props) => <MaterialIcons name="pets" size={26} {...props} />,
-    chat: (props) => <Ionicons name="chatbubble-outline" size={26} {...props} />,
-    profile: (props) => <Feather name="user" size={26} {...props} />,
+    index: (props: any) => <MaterialIcons name="pets" size={20} {...props} />,
+    chat: (props: any) => <Ionicons name="chatbubble-outline" size={20} {...props} />,
+    profile: (props: any) => <Feather name="user" size={20} {...props} />,
 }

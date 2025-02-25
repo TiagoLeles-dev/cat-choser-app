@@ -61,12 +61,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     position: 'absolute',
-    bottom: 60,
-    left: 50,
-    right: 50,
+    paddingHorizontal: 12,
+    bottom: 25,
+    left: 100,
+    right: 100,
     backgroundColor: 'white',
     borderRadius: 30,
-    height: 60,
+    height: 54,
     justifyContent: 'space-around',
     alignItems: 'center',
     // iOS
